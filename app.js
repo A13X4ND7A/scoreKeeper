@@ -1,21 +1,48 @@
 const player1 = {
  button: document.querySelector("#buttonP1"),
   display: document.querySelector("#p1Display"),
+  name: document.querySelector("#player1Name"),
   score: 0
 }
 
 const player2 = {
   button: document.querySelector("#buttonP2"),
   display: document.querySelector("#p2Display"),
-  score: 0
-}
+  name: document.querySelector("#player2Name"),
+  score: 0,
+};
 
 const winningScoreSelect = document.querySelector("#playTo");
 const resetButton = document.querySelector("#resetButton");
+const changePlayer = document.querySelector("#changeButton");
 
 let winningScore = 5;
 let gameWon = false;
 
+
+changePlayer.addEventListener("click", function () {
+  player1.name.classList.toggle("hidden");
+  player2.name.classList.toggle("hidden");
+
+});
+
+
+
+function changePlayerName(player){
+let pName = player.name.value;
+player.button.innerText = pName;
+player.name.classList.add("hidden");
+}
+
+
+player1.name.addEventListener('change',function(e){
+  changePlayerName(player1);
+})
+
+player2.name.addEventListener("change", function (e) {
+  changePlayerName(player2);
+});
+  
 
 
 function updateScores(player, opponent){
@@ -62,3 +89,4 @@ function reset() {
     p.button.classList.add("btn-dark");
   }
 }
+
